@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class MergeSort{
 	
 	
@@ -6,20 +8,25 @@ class MergeSort{
 		
 		int i = lo;
 		int j=mid+1;
-		int k=0;
-		while(k < hi){
+		int k=lo;
+		
+		for(int ci=lo; ci<= hi; ci++)
+			aux[ci] = data[ci];
+		
+		while(k <= hi){
 
-			System.out.println(i + " " +j + " "+hi + " " +k);	
+			
 			if(j > hi) 
-				aux[k++] = data[i++];
+				data[k++] = aux[i++];
 			else if( i > mid)
-				aux[k++] = data[j++];
-			else if(data[i] < data[j]) 
-				aux[k++] = data[i++];
+				data[k++] = aux[j++];
+			else if(aux[i] < aux[j]) 
+				data[k++] = aux[i++];
 			else 
-				aux[k++] = data[j++];
+				data[k++] = aux[j++];
 			
 		}
+		
 	}
 		
 	public static void sort(int[] data, int[] aux, int lo, int hi){
@@ -37,27 +44,26 @@ class MergeSort{
 
 	public static void main(String[] args){
 		
-		/*Scanner scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		
 		System.out.println("Enter the data size : ");
 		int len = scanner.nextInt();
-		int[] data = new int[len];
+		int[] dat = new int[len];
 		
-		System.out.println("Enter the data in sorted order : ");
+		System.out.println("Enter the data : ");
 		
-		while(len > 0){
+		for(int i=0; i<len;i++)
 			
-			data[len-1] = scanner.nextInt();
-			len--;
-		}*/
+			dat[i] = scanner.nextInt();
 		
-		int[] data = {44,3,11,9};
-		int[] aux = new int[4];
 		
-		sort(data,aux,0,3);
+		//int[] data = {44,3,11,9,55,6,33,45,0,34};
+		int[] aux = new int[len];
 		
-		for(int i:aux)
-			System.out.println(i);
+		sort(dat,aux,0,len-1);
+		
+		for(int p:dat)
+			System.out.println(p);
 		
 		
 	}
